@@ -1,0 +1,33 @@
+  <button *ngIf="!enableRefresh"(click)="loadData()">Load Data</button>
+  <button *ngIf="enableRefresh">Refresh Data</button>
+  <table *ngIf="showTable">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Role</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersData; let i = index">
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.fn"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.mn"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.ln"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.email"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.phone"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.Role"></td>
+        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.place"></td>
+        <td>
+          <button *ngIf="!isEditEnabled[i]" (click)="editUser(i)">Edit</button>
+          <button *ngIf="isEditEnabled[i]" (click)="saveUser(i)">Save</button>
+          <button *ngIf="isEditEnabled[i]" (click)="cancelEdit(i)">Cancel</button>
+          <button (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
