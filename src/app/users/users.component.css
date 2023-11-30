@@ -1,13 +1,97 @@
-style{
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 5px;
-        text-align: left;
-    }
-    .hidden {
-        display: none;
-    }
-}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid;
+  }
+  
+  th {
+    background-color:darkorange;
+    color:black;
+    font-weight: bold;
+    padding: 6px;
+    text-align: center;
+    border: 1px solid;
+   
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  td {
+    padding: 6px;
+    border: 1px solid;
+  }
+  
+  td input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+button {
+    padding: 2px 4px;
+    margin: 1px;
+    cursor: pointer;
+  }
+
+  .load-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  
+  button[data-action="load"]{
+    background-color:darkmagenta;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    justify-content: center;
+  } 
+
+  button[data-action="refresh"] {
+    background-color:darkgreen;
+    color: white;
+    border: none;
+  }
+  
+  button[data-action="edit"]{
+    background-color:blue;
+    color: white;
+    border: none;
+    align-items: center;
+  }
+  button[data-action="save"]{
+    background-color:brown;
+    color: white;
+    border: none;
+
+  }
+  button[data-action="cancel"]{
+    background-color:blueviolet;
+    color: white;
+    border: none;
+
+  }
+  button[data-action="delete"] {
+    background-color:crimson;
+    color: white;
+    border: none;
+    align-items: center;
+    
+  }
+  
+  button[disabled] {
+    background-color: #808080;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }

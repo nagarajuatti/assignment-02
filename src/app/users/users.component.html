@@ -1,33 +1,46 @@
-  <button *ngIf="!enableRefresh"(click)="loadData()">Load Data</button>
-  <button *ngIf="enableRefresh">Refresh Data</button>
-  <table *ngIf="showTable">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Middle Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Role</th>
-        <th>Address</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of usersData; let i = index">
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.fn"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.mn"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.ln"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.email"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.phone"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.Role"></td>
-        <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.place"></td>
-        <td>
-          <button *ngIf="!isEditEnabled[i]" (click)="editUser(i)">Edit</button>
-          <button *ngIf="isEditEnabled[i]" (click)="saveUser(i)">Save</button>
-          <button *ngIf="isEditEnabled[i]" (click)="cancelEdit(i)">Cancel</button>
-          <button (click)="deleteUser(user.id)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="load-button-container">
+  <button *ngIf="!enableRefresh" data-action="load" (click)="loadData()">Load Data</button>
+  <button *ngIf="enableRefresh" data-action="refresh" (click)="loadData()">Refresh Data</button>
+</div>
+<div> {{ sampledate | customDate:'YYYY-MM-DD' }} </div>
+<div> {{ sampledate | customDate:'YYYY/MM/DD' }} </div>
+
+<table *ngIf="showTable">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+      <th>Address</th>
+      <th>Actions</th>
+      <!-- <th>Date</th> -->
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of usersData; let i = index" [class.edit-mode]="isEditEnabled[i]">
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.fn"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.mn"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.ln"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.email"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.phone"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.role"></td>
+      <td><input type="text" [disabled]="!isEditEnabled[i]" [(ngModel)]="user.place"></td>
+      <!-- <td>{{user.date}} </td> Angular date pipe-->
+      <!-- <td>{{user.date | date}} </td> -->
+      <td>
+        <div class="load-button-container">
+          <button *ngIf="!isEditEnabled[i]" data-action="edit" (click)="editUser(i)">Edit</button>
+        </div>
+        <button *ngIf="isEditEnabled[i]" data-action="save" (click)="saveUser(i)">Save</button>
+        <button *ngIf="isEditEnabled[i]" data-action="cancel" (click)="cancelUser(i)">Cancel</button>
+        <div class="load-button-container">
+          <button data-action="delete" (click)="deleteUser(user.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
